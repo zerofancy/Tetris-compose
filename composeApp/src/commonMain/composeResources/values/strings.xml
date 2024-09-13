@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">俄罗斯方块</string>
+    <string name="about_game">
+        俄罗斯方块游戏简介\n
+        不必多言，相信没有没玩过的。\n
+    </string>
+</resources>
