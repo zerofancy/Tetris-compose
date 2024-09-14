@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">俄罗斯方块</string>
     <string name="about_game">
-        俄罗斯方块游戏简介\n
-        不必多言，相信没有没玩过的。\n
+        Tetris\n
+        You may use keyboard to control the game on Windows.\n
+        W、A、S、D or Up、Left、Down、Right Keys to control the brick.\n
+        Space Key for pause/resume the game.\n
+        Enter for confirm.\n
+        Esc key for exit current page.
     </string>
 </resources>

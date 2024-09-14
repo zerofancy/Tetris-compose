@@ -9,10 +9,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import top.ntutn.tetris.input.IInputHandler
 import top.ntutn.tetris.tetris.GameController
 
 @Composable
-fun GameScreen(modifier: Modifier = Modifier, onBackMenu: () -> Unit) {
+fun GameScreen(modifier: Modifier = Modifier, inputProvider: ((IInputHandler) -> Unit)? = null, onBackMenu: () -> Unit) {
     val coroutineScope = rememberCoroutineScope()
     var gameController by remember { mutableStateOf(StateHolder(GameController())) }
     val controller = gameController.value
@@ -96,5 +97,59 @@ fun GameScreen(modifier: Modifier = Modifier, onBackMenu: () -> Unit) {
                 }
             }
         }
+    }
+    LaunchedEffect(inputProvider) {
+        inputProvider?.invoke(object : IInputHandler by IInputHandler.Stub {
+            override fun top(): Boolean {
+                if (controller.gameState != GameController.GameState.PLAYING) {
+                    return false
+                }
+                controller.rotate()
+                return true
+            }
+
+            override fun bottom(): Boolean {
+                if (controller.gameState != GameController.GameState.PLAYING) {
+                    return false
+                }
+                controller.moveBottom()
+                return true
+            }
+
+            override fun left(): Boolean {
+                if (controller.gameState != GameController.GameState.PLAYING) {
+                    return false
+                }
+                controller.moveLeft()
+                return true
+            }
+
+            override fun right(): Boolean {
+                if (controller.gameState != GameController.GameState.PLAYING) {
+                    return false
+                }
+                controller.moveRight()
+                return true
+            }
+
+            override fun pause(): Boolean {
+                if (controller.gameState == GameController.GameState.PLAYING) {
+                    controller.pause()
+                    return true
+                } else if (controller.gameState == GameController.GameState.PAUSE) {
+                    controller.startGame(coroutineScope)
+                    return true
+                }
+                return false
+            }
+
+            override fun cancel(): Boolean {
+                if (controller.gameState != GameController.GameState.STOP) {
+                    return false
+                }
+                onBackMenu()
+                return true
+            }
+        })
     }
 }
