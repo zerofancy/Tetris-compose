@@ -8,6 +8,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import org.jetbrains.compose.resources.stringResource
+import tetris.composeapp.generated.resources.Res
+import tetris.composeapp.generated.resources.menu_about
+import tetris.composeapp.generated.resources.menu_start
 import top.ntutn.tetris.input.IInputHandler
 
 @Composable
@@ -19,8 +23,8 @@ fun MenuScreen(
 ) {
     var currentItem by remember { mutableStateOf(0) }
     val actions = listOf(
-        onNewGame to "New Game",
-        onAbout to "About"
+        onNewGame to stringResource(Res.string.menu_start),
+        onAbout to stringResource(Res.string.menu_about),
     )
 
     Column(modifier, horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {

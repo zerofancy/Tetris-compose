@@ -9,6 +9,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import org.jetbrains.compose.resources.stringResource
+import tetris.composeapp.generated.resources.*
+import tetris.composeapp.generated.resources.Res
+import tetris.composeapp.generated.resources.btn_left
+import tetris.composeapp.generated.resources.btn_pause
+import tetris.composeapp.generated.resources.btn_resume
 import top.ntutn.tetris.input.IInputHandler
 import top.ntutn.tetris.tetris.GameController
 
@@ -65,35 +71,35 @@ fun GameScreen(modifier: Modifier = Modifier, inputProvider: ((IInputHandler) ->
 
             if (controller.gameState == GameController.GameState.PLAYING) {
                 Button(onClick = controller::pause) {
-                    Text("Pause")
+                    Text(stringResource(Res.string.btn_pause))
                 }
                 Spacer(modifier = Modifier.height(16.dp))
                 Row {
                     Button(onClick = controller::moveLeft) {
-                        Text("Left")
+                        Text(stringResource(Res.string.btn_left))
                     }
                     Column {
                         Button(onClick = controller::rotate) {
-                            Text("Up")
+                            Text(stringResource(Res.string.btn_up))
                         }
                         Button(onClick = controller::moveBottom) {
-                            Text("Down")
+                            Text(stringResource(Res.string.btn_down))
                         }
                     }
                     Button(onClick = controller::moveRight) {
-                        Text("Right")
+                        Text(stringResource(Res.string.btn_right))
                     }
                 }
             } else if (controller.gameState == GameController.GameState.PAUSE) {
                 Button(onClick = {
                     controller.startGame(coroutineScope)
                 }) {
-                    Text("Resume")
+                    Text(stringResource(Res.string.btn_resume))
                 }
             }
             if (controller.gameState == GameController.GameState.STOP) {
                 Button(onClick =  onBackMenu) {
-                    Text("Exit")
+                    Text(stringResource(Res.string.btn_exit))
                 }
             }
         }
