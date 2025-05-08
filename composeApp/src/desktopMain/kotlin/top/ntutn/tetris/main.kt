@@ -8,9 +8,11 @@ import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.type
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import org.jetbrains.compose.resources.painterResource
+import tetris.composeapp.generated.resources.Res
+import tetris.composeapp.generated.resources.icon
 import top.ntutn.tetris.input.IInputHandler
 
 fun main() = application {
@@ -19,19 +21,19 @@ fun main() = application {
     Window(
         onCloseRequest = ::exitApplication,
         title = "俄罗斯方块",
-        icon = painterResource("icon.png"),
+        icon = painterResource(Res.drawable.icon),
         onKeyEvent = event@{ event ->
             if (event.type != KeyEventType.KeyUp) {
                 return@event false
             }
             when(event.key) {
-                Key.W, Key.DirectionUp -> inputHandler?.top() ?: false
-                Key.S, Key.DirectionDown -> inputHandler?.bottom() ?: false
-                Key.A, Key.DirectionLeft -> inputHandler?.left() ?: false
-                Key.D, Key.DirectionRight -> inputHandler?.right() ?: false
-                Key.Spacebar -> inputHandler?.pause() ?: false
-                Key.Enter -> inputHandler?.select() ?: false
-                Key.Escape -> inputHandler?.cancel() ?: false
+                Key.W, Key.DirectionUp -> inputHandler?.top() == true
+                Key.S, Key.DirectionDown -> inputHandler?.bottom() == true
+                Key.A, Key.DirectionLeft -> inputHandler?.left() == true
+                Key.D, Key.DirectionRight -> inputHandler?.right() == true
+                Key.Spacebar -> inputHandler?.pause() == true
+                Key.Enter -> inputHandler?.select() == true
+                Key.Escape -> inputHandler?.cancel() == true
                 else -> false
             }
         }
