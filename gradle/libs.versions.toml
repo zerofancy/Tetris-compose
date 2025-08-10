@@ -1,12 +1,12 @@
 [versions]
 agp = "8.12.0"
-android-compileSdk = "35"
+android-compileSdk = "36"
 android-minSdk = "24"
 android-targetSdk = "35"
 androidx-activityCompose = "1.10.1"
-androidx-lifecycle = "2.8.4"
-compose-plugin = "1.7.3"
-kotlin = "2.1.20"
+androidx-lifecycle = "2.9.1"
+compose-plugin = "1.8.2"
+kotlin = "2.2.0"
 kotlinx-coroutines = "1.10.2"
 
 [libraries]
